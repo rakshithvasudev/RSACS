@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include head %>
+</head>
+<body class="container">
+
+<header>
+    <% include header %>
+</header>
+
+<main>
+    <div class="jumbotron">
+        <h1><%=title%></h1>
+	    <form>
+          <div class="form-group">   
+              Short Name:<br>
+              <input type="text" name="shortname"><br>
+              Address Line 1:<br>
+              <input type="text" name="addressLine1"><br>
+              Address Line 2:<br>
+              <input type="text" name="addressLine2"><br>
+              City:<br>
+              <input type="text" name="city"><br>
+              State:<br>
+              <input type="text" name="state"><br>                              
+              Zipcode:<br>
+              <input type="text" name="zipcode"><br>
+              Phone Number:<br>
+              <input type="text" name="phoneNumber"><br></div>
+          </div>                                                            
+        </form>
+    </div>
+</main>
+
+<footer>
+    <% include footer %>
+</footer>
+
+</body>
+</html>

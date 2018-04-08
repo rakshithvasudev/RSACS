@@ -29,6 +29,11 @@ router.get('/sites', function(req, res, next) {
 
 });
 
+
+router.get('/site/create', function(req, res, next) {
+  res.render('siteCreate', { title: 'Create a site:' });
+});
+
 router.post('/site/create', function(req, res, next) {
   res.render('site', { title: 'Site create with post' });
 });
