@@ -6,13 +6,4 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'RSACS' });
 });
 
-
-router.post('/', function(req, res, next) {
-  res.render('index', { title: 'RSACS' });
-});
-
-
-
-
-
 module.exports = router;
