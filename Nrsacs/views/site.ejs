@@ -12,17 +12,31 @@
 <main>
     <div class="jumbotron">
         <h1><%=title%></h1>
-	    <ul>
-		    <% records.forEach(function(site) { %>
-    	      <li>
-              <%  for(var property in site){ %>
-                   <% if(site.hasOwnProperty(property)){ %>
-                       <%= site[property] %> 
-                    <%}%>
-               <% }%>
-              </li>
-		    <% }); %>
-		</ul>
+		  <table class="table">
+          <tr>
+              <th>Site_id</th>
+              <th>ShortName</th>
+              <th>Address Line 1</th>
+              <th>Site_id</th>
+              <th>Site_id</th> 
+              <th>Site_id</th>
+              <th>Site_id</th>
+              <th>Site_id</th>
+              <th>Site_id</th>
+              <th>Site_id</th>
+          </tr>
+               
+            <tr>
+            <% records.forEach(function(site) { %>  
+               <%  for(var property in site){ %>
+                   <% if(site.hasOwnProperty(property)){ %>        
+                        <td><%= site[property] %></td>
+                        
+                    <%}%>     
+                <% }%>
+            </tr>
+		  <% }); %>
+    </table>
     </div>
 </main>
 
