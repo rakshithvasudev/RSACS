@@ -14,7 +14,13 @@
         <h1><%=title%></h1>
 	    <ul>
 		    <% records.forEach(function(site) { %>
-		        <li><%= site%></li>
+    	      <li>
+              <%  for(var property in site){ %>
+                   <% if(site.hasOwnProperty(property)){ %>
+                       <%= site[property] %> 
+                    <%}%>
+               <% }%>
+              </li>
 		    <% }); %>
 		</ul>
     </div>

@@ -18,7 +18,7 @@ router.get('/sites', function(req, res, next) {
 	if (!err) {
 			console.log("Showing All sites on screen:");
 			for (var i of rows) {
-					siteRows.push(JSON.stringify(i));	
+					siteRows.push(JSON.parse(JSON.stringify(i)));	
 			}
 			console.log(siteRows);
 			res.render('site', {title:'All Sites', records:siteRows});
