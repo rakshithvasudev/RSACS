@@ -36,21 +36,23 @@ router.get('/site/create', function(req, res, next) {
 
 router.post('/site/create', function(req, res, next) {
 
-var data = {
-    shortName: req.body.shortName,
-    addressLine1: req.body.addressLine1,
-    addressLine1: req.body.addressLine2,
-    city: req.body.city,
-    state: req.body.state,
-    zipcode: req.body.zipcode,
-    phoneNumber: req.body.phoneNumber
-};
+var obj = [
+     req.body.shortName,
+     req.body.addressLine1,
+     req.body.addressLine2,
+     req.body.city,
+     req.body.state,
+     req.body.zipcode,
+     req.body.phoneNumber
+]
 
 
-var squery = "INSERT INTO SITE SET ?";
+var squery = 'insert into site (shortName,addressLine1,addressLine2,city,state,zipcode,phoneNumber) values (?,?,?,?,?,?,?);' 
+
+squery = mysql.format(squery,obj)
  console.log(req.body);
 
-  dbconnector.query(squery,data,function(err,rows,fields){
+  dbconnector.query(squery,obj,function(err,rows,fields){
   	if(!err){
   		res.send("Record Added Successfully: "+req.body);
   	}else{

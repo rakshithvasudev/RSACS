@@ -38,15 +38,16 @@ class siteController extends Controller
      */
     public function store(Request $request)
     {
-        DB::insert('insert into site (shortName,addressLine1,addressLine2,city,state,zipcode,phoneNumber) values (?, ?, ?, ?, ?, ?, ?)', 
-            [$request->shortName,
-             $request->addressLine1,
-             $request->addressLine2,
-             $request->city,
-             $request->state,
-             $request->zipcode,
-             $request->phoneNumber]);
-        return $request->all();
+        DB::insert('insert into site (shortName,addressLine1,addressLine2,city,state,zipcode,phoneNumber) values (:shortName,:addressLine1,:addressLine2,:city,:state,:zipcode,:phoneNumber)', 
+            ['shortName' => $request->shortName,
+             'addressLine1' => $request->addressLine1,
+             'addressLine2'=>$request->addressLine2,
+             'city'=>$request->city,
+             'state' =>$request->state,
+             'zipcode'=>$request->zipcode,
+             'phoneNumber'=>$request->phoneNumber]);
+        
+        return "Added record to db!";
     }
 
     /**
@@ -57,7 +58,10 @@ class siteController extends Controller
      */
     public function show($id)
     {
-        //
+    
+        $results = DB::select('select * from site where site_id = :site_id limt 1', ['site_id' => $id]);
+        return $results;
+
     }
 
     /**
@@ -68,8 +72,11 @@ class siteController extends Controller
      */
     public function edit($id)
     {
-        //
-    }
+
+        $foundSite = DB::select('select * from site where site_id =:site_id limit 1',['site_id'=>$id]);
+         return view('site.siteEdit')->with('foundSite',$foundSite);
+         // return gettype ($foundSite);
+    } 
 
     /**
      * Update the specified resource in storage.
@@ -81,6 +88,7 @@ class siteController extends Controller
     public function update(Request $request, $id)
     {
         //
+
     }
 
     /**
