@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use DB;
 
-class siteController extends Controller
+class SiteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,6 +17,7 @@ class siteController extends Controller
     {
         $sites = DB::select('select * from site');
 
+        // return view('site.siteAll')->with('sites',$sites);
         return $sites;
     }
 
@@ -27,7 +28,7 @@ class siteController extends Controller
      */
     public function create()
     {
-      return view('site.site');
+      return view('site.siteCreate');
     }
 
     /**
@@ -59,7 +60,7 @@ class siteController extends Controller
     public function show($id)
     {
     
-        $results = DB::select('select * from site where site_id = :site_id limt 1', ['site_id' => $id]);
+        $results = DB::select('select * from site where site_id = :site_id limit 1', ['site_id' => $id]);
         return $results;
 
     }
@@ -75,7 +76,6 @@ class siteController extends Controller
 
         $foundSite = DB::select('select * from site where site_id =:site_id limit 1',['site_id'=>$id]);
          return view('site.siteEdit')->with('foundSite',$foundSite);
-         // return gettype ($foundSite);
     } 
 
     /**
@@ -87,8 +87,24 @@ class siteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       $affected = DB::update('update site set shortName =:shortName,
+        addressLine1=:addressLine1,
+        addressLine2=:addressLine2,
+        city=:city,
+        state=:state,
+        zipcode=:zipcode,
+        phoneNumber=:phoneNumber where site_id=:site_id', 
+        [    'shortName' => $request->shortName,
+             'addressLine1' => $request->addressLine1,
+             'addressLine2'=>$request->addressLine2,
+             'city'=>$request->city,
+             'state' =>$request->state,
+             'zipcode'=>$request->zipcode,
+             'phoneNumber'=>$request->phoneNumber,
+             'site_id'=>$id
+        ]);
 
+       return "updated affected ".$affected." row(s).";
     }
 
     /**
@@ -99,6 +115,10 @@ class siteController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        // $deleted = DB::delete('delete from users where user_id=:user_id',['user_id'=>$id]);
+        // return "delete affected ".$deleted." row(s).";
+
+        return "Inside the delete route";
     }
 }
