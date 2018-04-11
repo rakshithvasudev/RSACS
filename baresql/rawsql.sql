@@ -405,7 +405,14 @@ SELECT * FROM SITE
 -- MVC Framework suits at the final decision.
 -- ------------------------------------------------------
 INSERT INTO SITE (shortName,addressLine1,addressLine2,city,zipcode,phoneNumber)
-VALUES ({values from request variable of the MVC framework});
+VALUES (
+shortName = :shortName,
+addressLine1 = :addressLine1,
+addressLine2 = :addressLine2,
+city = :city,
+zipcode = :zipcode,
+phoneNumber = :phoneNumber
+);
 -- ------------------------------------------------------
 -- Show the form for editing the specified resource.
 -- where $id is the id of the requested resource to be 
@@ -433,4 +440,162 @@ WHERE site_id =:site_id;
 -- notations from above.
 -- ------------------------------------------------------
 DELETE FROM SITE
-WHERE site_id =:site_id 
+WHERE site_id =:site_id; 
+
+-- ------------------------------------------------------
+-- Add a User record, with the same 
+-- notations from above.
+-- ------------------------------------------------------
+INSERT INTO USER (username, password, firstName, lastName, site_id)
+VALUES (
+username = :username,
+password = :password,
+firstName = :firstName,
+lastName = :lastName,
+site_id = :site_id
+);
+-- ------------------------------------------------------
+-- Edit a User record, where the values represented
+-- with a colon is obtained from request variable.
+-- ------------------------------------------------------
+UPDATE USER
+SET 
+username = :username,
+password = :password,
+firstName = :firstName,
+lastName = :lastName,
+site_id = :site_id,
+WHERE user_id =:user_id;
+
+-- ------------------------------------------------------
+-- Delete a User record, with the same 
+-- notations from above.
+-- ------------------------------------------------------
+DELETE FROM USER
+WHERE user_id =:user_id; 
+
+-- ------------------------------------------------------
+-- Add a Client record, where the values represented
+-- with a colon is obtained from request variable.
+-- ------------------------------------------------------
+INSERT INTO CLIENT (firstName, lastName, govtIDNumber, govtIDTypeDesc, ContactNumber)
+VALUES (
+firstName= :firstName,
+lastName = :lastName,
+govtIDNumber = :govtIDNumber,
+govtIDTypeDesc = :govtIDTypeDesc,
+ContactNumber = :ContactNumber
+);
+-- ------------------------------------------------------
+-- Edit a Client record, where the values represented
+-- with a colon is obtained from request variable.
+-- ------------------------------------------------------
+UPDATE CLIENT
+SET 
+firstName= :firstName,
+lastName = :lastName,
+govtIDNumber = :govtIDNumber,
+govtIDTypeDesc = :govtIDTypeDesc,
+ContactNumber = :ContactNumber,
+WHERE client_id =:client_id;
+-- ------------------------------------------------------
+-- Delete a Client record, with the same 
+-- notations from above.
+-- ------------------------------------------------------
+DELETE FROM CLIENT
+WHERE client_id =:client_id; 
+-- ------------------------------------------------------
+-- Add a Service record, where the values represented
+-- with a colon is obtained from request variable.
+-- ------------------------------------------------------
+INSERT INTO SERVICE (sName, site_id)
+VALUES ({from the request});
+-- ------------------------------------------------------
+-- Edit a Service record, where the values represented
+-- with a colon is obtained from request variable.
+-- ------------------------------------------------------
+UPDATE SERVICE
+SET 
+sName= :sName,
+site_id = :site_id
+WHERE service_id =:service_id;
+-- ------------------------------------------------------
+-- Delete a Service record, with the same 
+-- notations from above.
+-- ------------------------------------------------------
+DELETE FROM SERVICE
+WHERE service_id =:service_id;
+-- ------------------------------------------------------
+-- Add a FoodBank record, where the values represented
+-- with a colon is obtained from request variable.
+-- ------------------------------------------------------
+INSERT INTO FoodBank (Request_id, sFoodBank_id)
+VALUES (
+  Request_id =:request_id,
+  sFoodBank_id = :sFoodBank_id
+);
+-- ------------------------------------------------------
+-- Edit a FoodBank record, where the values represented
+-- with a colon is obtained from request variable.
+-- ------------------------------------------------------
+UPDATE FoodBank
+SET 
+Request_id = :Request_id,
+sFoodBank_id = :sFoodBank_id
+WHERE sFoodBank_id =:sFoodBank_id;
+-- ------------------------------------------------------
+-- Delete a Service record, with the same 
+-- notations from above.
+-- ------------------------------------------------------
+DELETE FROM SERVICE
+WHERE service_id =:service_id;
+-- ------------------------------------------------------
+-- Add a CheckIn record, where the values represented
+-- with a colon is obtained from request variable.
+-- ------------------------------------------------------
+INSERT INTO CheckIn (client_id, user_id,service_id,description)
+VALUES (
+  client_id =:client_id,
+  user_id = :user_id,
+  service_id=:service_id,
+  description=:description
+);
+-- ------------------------------------------------------
+-- Edit a CheckIn record, where the values represented
+-- with a colon is obtained from request variable.
+-- ------------------------------------------------------
+UPDATE CheckIn
+SET 
+ client_id =:client_id,
+ user_id = :user_id,
+ service_id=:service_id,
+ description=:description
+WHERE CheckIn_id =:CheckIn_id;
+-- ------------------------------------------------------
+-- Delete a CheckIn, with the same 
+-- notations from above.
+-- ------------------------------------------------------
+DELETE FROM CheckIn
+WHERE CheckIn_id =:CheckIn_id;
+-- ------------------------------------------------------
+-- Add a FoodPantry record, where the values represented
+-- with a colon is obtained from request variable.
+-- ------------------------------------------------------
+INSERT INTO FoodPantry (description)
+VALUES (
+  description=:description
+);
+-- ------------------------------------------------------
+-- Edit a FoodPantry record, where the values represented
+-- with a colon is obtained from request variable.
+-- ------------------------------------------------------
+UPDATE FoodPantry
+SET 
+ description=:description
+WHERE sFoodPantry_id =:sFoodPantry_id;
+-- ------------------------------------------------------
+-- Delete a FoodPantry, with the same 
+-- notations from above.
+-- ------------------------------------------------------
+DELETE FROM FoodPantry
+WHERE sFoodPantry_id =:sFoodPantry_id;
