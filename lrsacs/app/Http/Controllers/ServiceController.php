@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use DB;
+
 class ServiceController extends Controller
 {
     /**
@@ -13,7 +15,8 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
+       $services = DB::select('select * from service');
+       return $services;
     }
 
     /**
@@ -23,7 +26,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //
+        return view('service.serviceCreate');
     }
 
     /**
@@ -34,7 +37,13 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      DB::insert('insert into service (sName,site_id) 
+        values (:sName,:site_id)', [
+            'sName'=>$request->sName,
+            'site_id'=>$request->site_id
+        ]);
+
+      return "Record Inserted"; 
     }
 
     /**
@@ -56,7 +65,11 @@ class ServiceController extends Controller
      */
     public function edit($id)
     {
-        //
+       $service = DB::select('select * from service where service_id =:service_id',[
+            'service_id'=>$id
+       ]); 
+
+       return view('service.serviceEdit')->with('service', $service);
     }
 
     /**
@@ -68,7 +81,12 @@ class ServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $affected = DB::update('update service set sName=:sName where service_id=:service_id',[
+                'sName'=>$request->sName,
+                'service_id'=>$id
+        ]);
+
+        return "affected ".$affected. " row(s).";
     }
 
     /**

@@ -20,12 +20,4 @@ Route::resource('site', 'SiteController');
 
 
 
-Route::get('/service', function () {
-    return "Inside Service";
-});
-
-
-Route::post('/service/add', function () {
-    return "Adding a Service";
-});
-
+Route::resource('service','ServiceController');
