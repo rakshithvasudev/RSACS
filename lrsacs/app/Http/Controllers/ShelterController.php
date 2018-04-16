@@ -39,7 +39,17 @@ class ShelterController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
+        DB::insert('insert into shelter (sShelter_id,hoursOfOperation,bunkType,bunkAvailableCount,familyRoomAvailableCount) 
+        values (:sShelter_id,:hoursOfOperation,:bunkType,:bunkAvailableCount,:familyRoomAvailableCount)', [
+            'sShelter_id'=>$request->service_id,
+            'hoursOfOperation'=>$request->hoursOfOperation,
+            'bunkType'=>$request->bunkType,
+            'bunkAvailableCount'=>$request->bunkAvailableCount,
+            'familyRoomAvailableCount'=>$request->familyRoomAvailableCount
+        ]);
+
+      return "Record Inserted"; 
+      
     }
 
     /**

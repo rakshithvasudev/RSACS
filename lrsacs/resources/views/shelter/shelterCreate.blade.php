@@ -13,7 +13,7 @@
               <label for="bunkCount">Bunk Available Count:</label>
               <input type="text" class="form-control"  placeholder="ex: 20" name="bunkCount"><br>
 
-              <label for="familyRoomAvailableCount">Bunk Available Count:</label>
+              <label for="familyRoomAvailableCount">Family Room Available Count:</label>
               <input type="text" class="form-control"  placeholder="ex: 2" name="familyRoomAvailableCount"><br>
 
               <label for="service">Choose your service:</label>             
