@@ -21,3 +21,6 @@ Route::resource('site', 'SiteController');
 
 
 Route::resource('service','ServiceController');
+
+
+Route::resource('shelter','ShelterController');
