@@ -1,8 +1,9 @@
  <main>
     <div>
         <h1>Edit the Shelter</h1>
-	    <form method="post" action="/shelter">
+	    <form method="post" action="/shelter/{{$shelter[0]->sShelter_id}}">
 	    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+      <input type="hidden" name="_method" value="PUT">
           <div class="form-group">   
              <label for="hoursOfOperation">Hours of Operation</label>
               <input type="text" class="form-control"   name="hoursOfOperation" value="{{$shelter[0]->hoursOfOperation}}"><br>
