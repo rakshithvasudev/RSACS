@@ -88,7 +88,7 @@ class ShelterController extends Controller
     {
 
        // get all the services but get that record which has my id as the top  
-       $services = DB::select('select * from service order by service_id=:service_id desc, service_id asc',[
+       $services = DB::select('select * from service order by service_id=:service_id desc, sName asc',[
             'service_id'=>$id
        ]); 
 
@@ -110,7 +110,19 @@ class ShelterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        $affected = DB::update('update shelter set sShelter_id=:sShelter_id,hoursOfOperation=:hoursOfOperation,
+            bunkType=:bunkType,bunkAvailableCount=:bunkAvailableCount,familyRoomAvailableCount=:familyRoomAvailableCount,description=:description',[
+            'sShelter_id'=>$request->service_id,
+            'hoursOfOperation'=>$request->hoursOfOperation,
+            'bunkType'=>$request->bunkType,
+            'bunkAvailableCount'=>$request->bunkAvailableCount,
+            'familyRoomAvailableCount'=>$request->familyRoomAvailableCount,
+            'description'=>$request->description
+        ]);
+
+        return "affected ".$affected. " row(s).";
+
+
     }
 
     /**
