@@ -33,23 +33,38 @@ class ShelterController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * Handle the default value if is_null()
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        DB::insert('insert into shelter (sShelter_id,hoursOfOperation,bunkType,bunkAvailableCount,familyRoomAvailableCount) 
-        values (:sShelter_id,:hoursOfOperation,:bunkType,:bunkAvailableCount,:familyRoomAvailableCount)', [
+
+        if(!is_null($request->hoursOfOperation)){
+        DB::insert('insert into shelter (sShelter_id,hoursOfOperation,bunkType,bunkAvailableCount,familyRoomAvailableCount,description) 
+        values (:sShelter_id,:hoursOfOperation,:bunkType,:bunkAvailableCount,:familyRoomAvailableCount,:description)', [
             'sShelter_id'=>$request->service_id,
             'hoursOfOperation'=>$request->hoursOfOperation,
             'bunkType'=>$request->bunkType,
             'bunkAvailableCount'=>$request->bunkAvailableCount,
-            'familyRoomAvailableCount'=>$request->familyRoomAvailableCount
+            'familyRoomAvailableCount'=>$request->familyRoomAvailableCount,
+            'description'=>$request->description
+        ]);
+    }
+    
+    else{
+       DB::insert('insert into shelter (sShelter_id,bunkType,bunkAvailableCount,familyRoomAvailableCount,description) 
+        values (:sShelter_id,:bunkType,:bunkAvailableCount,:familyRoomAvailableCount,:description)', [
+            'sShelter_id'=>$request->service_id,
+            'bunkType'=>$request->bunkType,
+            'bunkAvailableCount'=>$request->bunkAvailableCount,
+            'familyRoomAvailableCount'=>$request->familyRoomAvailableCount,
+            'description'=>$request->description
         ]);
 
+    }
       return "Record Inserted"; 
-      
     }
 
     /**
@@ -71,7 +86,19 @@ class ShelterController extends Controller
      */
     public function edit($id)
     {
-        //
+
+       // get all the services but get that record which has my id as the top  
+       $services = DB::select('select * from service order by service_id=:service_id desc, service_id asc',[
+            'service_id'=>$id
+       ]); 
+
+       $shelter = DB::select('select * from shelter where sShelter_id =:sShelter_id limit 1',[
+            'sShelter_id'=>$id
+       ]); 
+
+
+       return view('shelter.shelterEdit')->with('services', $services)->with('shelter',$shelter);
+        // return $shelter;
     }
 
     /**
@@ -83,7 +110,7 @@ class ShelterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
