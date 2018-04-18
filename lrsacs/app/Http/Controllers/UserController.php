@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use DB;
+
 class UserController extends Controller
 {
     /**
@@ -13,7 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = DB::select('select * from user');
+        return $users;
     }
 
     /**
@@ -23,7 +26,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+
+        $sites = DB::select('select * from site order by shortName asc');
+        return view('user.UserCreate')->with('sites',$sites);
     }
 
     /**
@@ -34,7 +39,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       DB::insert('insert into user (username,password,firstName,lastName,site_id) values(
+        :username,:password,:firstName,:lastName,:site_id)',[
+        'username'=>$request->username,
+        'password'=>$request->password,
+        'firstName'=>$request->firstName,
+        'lastName'=>$request->firstName,
+        'site_id'=>$request->site_id
+        ]);
+
+       return "Record Inserted"; 
     }
 
     /**
@@ -45,7 +59,11 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+         $user = DB::select('select * from user where user_id=:user_id limit 1',[
+            'user_id'=>$id
+         ]);
+
+         return $user;
     }
 
     /**
@@ -56,7 +74,17 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $user = DB::select('select * from user where user_id=:user_id limit 1',[
+            'user_id'=>$id
+         ]);
+
+         // get all the sites but get that record which has my id as the top  
+       $sites = DB::select('select * from site order by site_id=:site_id desc, shortName asc',[
+            'site_id'=>$user[0]->site_id
+       ]); 
+
+        return view('user.userEdit')->with('user',$user)->with('sites',$sites);
     }
 
     /**
@@ -68,7 +96,21 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $affected = DB::update('update user set 
+        username =:username,
+        password=:password,
+        firstName=:firstName,
+        lastName=:lastName,
+        site_id=:site_id where user_id=:user_id',
+        [    'user_id'=>$id,   
+             'username' => $request->username,
+             'password' => $request->password,
+             'firstName'=>$request->firstName,
+             'lastName'=>$request->lastName,
+             'site_id'=>$request->site_id
+        ]);
+
+       return "update affected ".$affected." row(s).";
     }
 
     /**

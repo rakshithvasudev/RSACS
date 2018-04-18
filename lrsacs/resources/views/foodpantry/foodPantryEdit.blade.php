@@ -19,8 +19,6 @@
              </select>
              <br>
 
-
-
              <label for="description">Food Pantry Description</label><br>
              <textarea class="form-control" name="description" rows=5>{{$foodpantry[0]->description}}</textarea> <br>
 

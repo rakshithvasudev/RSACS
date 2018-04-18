@@ -27,3 +27,6 @@ Route::resource('shelter','ShelterController');
 
 
 Route::resource('foodpantry','FoodPantryController');
+
+
+Route::resource('user','UserController');
