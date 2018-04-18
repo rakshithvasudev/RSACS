@@ -1,3 +1,7 @@
+@extends('layouts.app')
+@section('title', 'New Site')
+
+@section('content')
  <main>
     <div>
         <h1>Create a new site</h1>
@@ -30,3 +34,4 @@
         </form>
     </div>
 </main>
+@endsection
