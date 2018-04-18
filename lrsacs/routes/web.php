@@ -30,3 +30,9 @@ Route::resource('foodpantry','FoodPantryController');
 
 
 Route::resource('user','UserController');
+
+
+Route::resource('request','RequestController');
+
+
+Route::resource('itemcategory','ItemCategoryController');

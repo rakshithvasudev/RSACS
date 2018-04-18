@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class RequestController extends Controller
+use DB;
+
+class ItemCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +15,8 @@ class RequestController extends Controller
      */
     public function index()
     {
-         $requests = DB::select('select * from request');
-         return $requests;
+        $itemcategories = DB::select('select * from itemcategory');
+        return $itemcategories;
     }
 
     /**
@@ -24,8 +26,7 @@ class RequestController extends Controller
      */
     public function create()
     {
-        $users = DB::select('select * from user')
-        return view('request.requestCreate')->with('users',$users);
+       return view('itemcategory.ItemCategoryCreate');
     }
 
     /**
@@ -36,7 +37,11 @@ class RequestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::insert('insert into itemcategory(categoryName) values (:categoryName)',[
+            'categoryName'=>$request->categoryName
+        ]);
+
+        return "insert record(s).";
     }
 
     /**
@@ -58,7 +63,11 @@ class RequestController extends Controller
      */
     public function edit($id)
     {
-        //
+        $itemcategories = DB::select('select * from itemcategory where category_id=:category_id',[
+            'category_id'=>$id
+        ]);
+        return view('itemcategory.ItemCategoryEdit')->with('itemcategories',$itemcategories);
+        // return $itemcategories;
     }
 
     /**
@@ -70,7 +79,12 @@ class RequestController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $affected = DB::update('update itemcategory set categoryName=:categoryName where category_id=:category_id',[
+                'categoryName'=>$request->categoryName,
+                'category_id'=>$id
+        ]);
+
+        return "affected ".$affected. " row(s).";
     }
 
     /**
