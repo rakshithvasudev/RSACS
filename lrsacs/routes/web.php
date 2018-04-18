@@ -36,3 +36,6 @@ Route::resource('request','RequestController');
 
 
 Route::resource('itemcategory','ItemCategoryController');
+
+
+Route::resource('itemsubcategory','ItemSubCategoryController');
