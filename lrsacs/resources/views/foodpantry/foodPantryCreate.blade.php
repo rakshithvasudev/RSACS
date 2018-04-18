@@ -1,3 +1,7 @@
+@extends('layouts.app')
+@section('title', 'New FoodPantry')
+
+@section('content')
  <main>
     <div>
         <h1>Create a new FoodPantry</h1>
@@ -9,7 +13,7 @@
             <label for="Services">Services</label><br>
              
             
-             <select name="service_id">
+             <select class="form-control" name="service_id">
               @foreach($services as $service)
                <option value="{{$service->service_id}}">{{$service->sName}}</option>
               @endforeach
@@ -27,3 +31,4 @@
         </form>
     </div>
 </main>
+@endsection

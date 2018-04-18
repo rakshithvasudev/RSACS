@@ -1,3 +1,7 @@
+@extends('layouts.app')
+@section('title', 'New Service')
+
+@section('content')
  <main>
     <div>
         <h1>Create a new Service</h1>
@@ -15,3 +19,4 @@
         </form>
     </div>
 </main>
+@endsection

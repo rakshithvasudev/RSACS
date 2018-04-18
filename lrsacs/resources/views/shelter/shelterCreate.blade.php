@@ -1,3 +1,7 @@
+@extends('layouts.app')
+@section('title', 'New Shelter')
+
+@section('content')
  <main>
     <div>
         <h1>Create a new Shelter</h1>
@@ -17,17 +21,18 @@
               <input type="number" class="form-control"  placeholder="ex: 2" name="familyRoomAvailableCount"><br>
 
               <label for="service">Choose your service:</label>             
-              <select name="service_id">
+              <select class="form-control" name="service_id">
                 @foreach ($services as $service)
                   <option value="{{$service->service_id}}">{{$service->sName}}</option>  
                 @endforeach
               </select><br>
 
               <label for="description">Bunk Description:</label>
-              <textarea class="form-control"  placeholder="Describe your bunk here" name="description" rows=5></textarea> 
+              <textarea class="form-control"  placeholder="Describe your bunk here" name="description" rows=5></textarea> <br>
 
               <button type="submit" class="btn btn-primary">Submit</button>
           </div>                                                            
         </form>
     </div>
 </main>
+@endsection
