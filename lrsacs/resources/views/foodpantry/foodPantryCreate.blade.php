@@ -5,6 +5,9 @@
  <main>
     <div>
         <h1>Create a new FoodPantry</h1>
+         <div class="alert alert-danger" role="alert">
+            Ensure you choose the right service, it can't be edited once created!
+          </div> 
 	    <form method="post" action="/foodpantry">
 	    <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <div class="form-group">   

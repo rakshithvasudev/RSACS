@@ -11,8 +11,8 @@
           <div class="form-group">   
              
 
-            <label for="Services">Services</label><br>
-             <select class="form-control" name="service_id">
+            <label for="Services">Associated Service (Can't Edit):</label><br>
+             <select class="form-control" name="service_id" disabled="true">
               @foreach($services as $service)
                <option value="{{$service->service_id}}">{{$service->sName}}</option>
               @endforeach
