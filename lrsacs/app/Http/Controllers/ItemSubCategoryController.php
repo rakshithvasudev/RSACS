@@ -90,7 +90,15 @@ class ItemSubCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $request->all();
+
+        $affected = DB::update('update shelter set category_id=:category_id,name=:name',[
+            'category_id'=>$request->service_id,
+            'name'=>$request->hoursOfOperation,
+        ]);
+
+        return "affected ".$affected. " row(s).";
+
+
     }
 
     /**
