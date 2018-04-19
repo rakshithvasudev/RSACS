@@ -38,7 +38,7 @@ class ItemSubCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        DB::insert('insert into itemsubcategory (category_id,name) values(category_id,name)',[
+        DB::insert('insert into itemsubcategory (category_id,name) values(:category_id,:name)',[
             "category_id"=>$request->category_id,
             "name"=>$request->name
         ]);
@@ -54,7 +54,11 @@ class ItemSubCategoryController extends Controller
      */
     public function show($id)
     {
-        //
+          $itemSubCategory = DB::select('select * from itemsubcategory where subCategory_id=:subCategory_id limit 1',[
+            "subCategory_id"=>$id
+        ]);
+
+        return $itemSubCategory;  
     }
 
     /**
@@ -65,7 +69,16 @@ class ItemSubCategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $itemSubCategory = DB::select('select * from itemsubcategory where subCategory_id=:subCategory_id limit 1',[
+            "subCategory_id"=>$id
+        ]);
+
+        $categories = DB::select('select * from itemcategory order by category_id=:category_id,categoryName asc',[
+            "category_id"=>$id
+        ]);
+        // return $itemSubCategory;
+        return view('itemsubcategory.itemsubcategoryEdit')->with('itemSubCategory',$itemSubCategory)->with('categories',$categories);
     }
 
     /**
@@ -77,7 +90,7 @@ class ItemSubCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return $request->all();
     }
 
     /**

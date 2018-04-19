@@ -311,7 +311,7 @@ ENGINE = InnoDB;
 -- Table `rsacs`.`CheckIn`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `rsacs`.`CheckIn` (
-  `CheckIn_id` INT NOT NULL,
+  `CheckIn_id` INT NOT NULL AUTO_INCREMENT,
   `client_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   `service_id` INT NOT NULL,
