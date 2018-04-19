@@ -75,7 +75,14 @@ class ItemController extends Controller
      */
     public function edit($id)
     {
-        //
+       $item = DB::select('select * from item where Item_id=:Item_id',[
+            "Item_id" => $id
+       ]);
+
+       $subcategories = DB::select('select * from itemsubcategory order by subCategory_id=:subCategory_id desc, name asc',[
+            "subCategory_id" =>$item[0]->subCategory_id
+       ]);
+       return view('item.itemEdit')->with('item',$item)->with('subcategories',$subcategories);
     }
 
     /**
@@ -87,7 +94,18 @@ class ItemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $affected = DB::update('update item set name=:name,
+            numberOfUnits=:numberOfUnits,
+            expirationDate=:expirationDate,
+            subCategory_id=:subCategory_id where Item_id=:Item_id',[
+                "name"=>$request->name,
+                "numberOfUnits"=>$request->numberOfUnits,
+                "expirationDate"=>$request->expirationDate,
+                "subCategory_id"=>$request->subCategory_id,
+                "Item_id"=>$id
+            ]);
+
+         return "affected ".$affected. " row(s).";
     }
 
     /**

@@ -21,8 +21,8 @@
               <label for="familyRoomAvailableCount">Family Room Available Count:</label>
               <input type="number" class="form-control" name="familyRoomAvailableCount"  value="{{$shelter[0]->familyRoomAvailableCount}}"><br>
 
-              <label for="service">Choose your service:</label>             
-              <select class="form-control" name="service_id">
+              <label for="service">Associated service (Can't Edit):</label>             
+              <select class="form-control" name="service_id" disabled="true">
                 @foreach ($services as $service)
                   <option value="{{$service->service_id}}" >{{$service->sName}}</option>  
                 @endforeach

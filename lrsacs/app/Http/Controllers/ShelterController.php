@@ -110,9 +110,11 @@ class ShelterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $affected = DB::update('update shelter set sShelter_id=:sShelter_id,hoursOfOperation=:hoursOfOperation,
-            bunkType=:bunkType,bunkAvailableCount=:bunkAvailableCount,familyRoomAvailableCount=:familyRoomAvailableCount,description=:description',[
-            'sShelter_id'=>$request->service_id,
+        $affected = DB::update('update shelter set hoursOfOperation=:hoursOfOperation,
+            bunkType=:bunkType,bunkAvailableCount=:bunkAvailableCount,
+            familyRoomAvailableCount=:familyRoomAvailableCount,
+            description=:description where sShelter_id=:sShelter_id',[
+            'sShelter_id'=>$id,
             'hoursOfOperation'=>$request->hoursOfOperation,
             'bunkType'=>$request->bunkType,
             'bunkAvailableCount'=>$request->bunkAvailableCount,
