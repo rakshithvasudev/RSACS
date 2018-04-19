@@ -91,13 +91,14 @@ class ItemSubCategoryController extends Controller
     public function update(Request $request, $id)
     {
 
-        $affected = DB::update('update shelter set category_id=:category_id,name=:name',[
-            'category_id'=>$request->service_id,
-            'name'=>$request->hoursOfOperation,
+        $affected = DB::update('update itemsubcategory set name=:name,category_id=:category_id where subCategory_id =:subCategory_id',[
+            'name'=>$request->name,
+            'category_id'=>$request->category_id,
+            'subCategory_id'=>$id
         ]);
 
         return "affected ".$affected. " row(s).";
-
+        return $request->all();
 
     }
 
