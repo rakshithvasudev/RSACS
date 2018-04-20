@@ -45,3 +45,6 @@ Route::resource('item','ItemController');
 
 
 Route::resource('foodbank','FoodBankController');
+
+
+Route::resource('foodbankinventory','FoodBankInventoryController');
