@@ -42,6 +42,8 @@ class RequestController extends Controller
     {   
 
         // even after 2.7 hours of head scratching, I couldn't figure out why this code doesn't work. 
+       
+
         // DB::insert('insert into request (source_user_id,destination_user_id,status,RequestedItemCount, ItemsProvidedCount, Item_id) values
         //     (source_user_id=:source_user_id,destination_user_id=:destination_user_id,status=:status,RequestedItemCount=:RequestedItemCount, ItemsProvidedCount=:ItemsProvidedCount, Item_id=:Item_id)',[
         //             "source_user_id"=>$request->source_user_id,
@@ -61,9 +63,7 @@ class RequestController extends Controller
             $request->ItemsProvidedCount,
             $request->Item_id]);
 
-        return "inserted record(s).";
-
-        // return $request->all();
+        return "inserted record(s).";   
     }
 
     /**
@@ -85,7 +85,24 @@ class RequestController extends Controller
      */
     public function edit($id)
     {
-        //
+        $itemRequest = DB::select('select * from request where request_id=:request_id',[
+            'request_id'=>$id
+        ]);
+
+        $sourceUsers = DB::select('select * from user order by user_id=:user_id desc, userName asc',[
+             "user_id"=>$itemRequest[0]->source_user_id   
+        ]);
+
+        $destinationUsers = DB::select('select * from user order by user_id=:user_id desc, userName asc',[
+            "user_id"=>$itemRequest[0]->destination_user_id     
+        ]);
+        
+        $items = DB::select('select * from item where Item_id=:Item_id',[
+            "Item_id"=>$itemRequest[0]->Item_id
+        ]);
+
+        return view('request.requestEdit')->with('itemRequest',$itemRequest)->with('sourceUsers',$sourceUsers)->
+        with('destinationUsers',$destinationUsers)->with('items',$items);
     }
 
     /**
@@ -97,7 +114,19 @@ class RequestController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       $affected = DB::update('update request set source_user_id=:source_user_id,destination_user_id=:destination_user_id,
+        status=:status,RequestedItemCount=:RequestedItemCount, ItemsProvidedCount=:ItemsProvidedCount, Item_id=:Item_id where request_id=:request_id',[
+            "source_user_id"=>$request->source_user_id,
+            "destination_user_id"=>$request->destination_user_id,
+            "status"=>$request->status,
+            "RequestedItemCount"=>$request->RequestedItemCount,
+            "ItemsProvidedCount"=>$request->ItemsProvidedCount,
+            "Item_id"=>$request->Item_id,
+            "request_id"=>$id
+        ]);
+
+        return "update affected ".$affected." row(s).";
+
     }
 
     /**
