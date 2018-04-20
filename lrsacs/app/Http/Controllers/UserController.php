@@ -44,7 +44,7 @@ class UserController extends Controller
         'username'=>$request->username,
         'password'=>$request->password,
         'firstName'=>$request->firstName,
-        'lastName'=>$request->firstName,
+        'lastName'=>$request->lastName,
         'site_id'=>$request->site_id
         ]);
 
