@@ -42,3 +42,6 @@ Route::resource('itemsubcategory','ItemSubCategoryController');
 
 
 Route::resource('item','ItemController');
+
+
+Route::resource('foodbank','FoodBankController');

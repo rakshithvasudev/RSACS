@@ -54,7 +54,7 @@ class RequestController extends Controller
         //             "Item_id"=>$request->Item_id
         // ]);
 
-        // This works like a charm, pardon me for not using named variables
+        // This works like a charm, pardon me for not using named variables - it was killing my time 
         DB::insert('insert into request(source_user_id,destination_user_id,status,RequestedItemCount, ItemsProvidedCount, Item_id) values(?,?,?,?,?,?)',[
             $request->source_user_id,
             $request->destination_user_id,
