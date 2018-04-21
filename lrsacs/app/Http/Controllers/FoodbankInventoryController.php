@@ -68,7 +68,22 @@ class FoodbankInventoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        
+        $foodbankInventory = DB::select('select * from foodbank_inventory where sFoodBank_id=:sFoodBank_id',[
+            "sFoodBank_id"=>$id
+        ]);
+
+        // get the already chosen record from the database
+        $foodbanks= DB::select('select * from foodbank order by sFoodBank_id=:sFoodBank_id',[
+            "sFoodBank_id"=>$foodbankInventory[0]->sFoodBank_id
+        ]);
+
+        $items = DB::select('select * from item order by Item_id=:Item_id',[
+            "Item_id"=>$foodbankInventory[0]->Item_id
+        ]);
+        
+        return view('foodbankInventory.foodbankInventoryEdit')->with('foodbanks',$foodbanks)
+        ->with('items',$items)->with('foodbankInventory',$foodbankInventory);
     }
 
     /**
@@ -80,7 +95,17 @@ class FoodbankInventoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         $foodbankInventory = DB::select('select * from foodbank_inventory where sFoodBank_id=:sFoodBank_id',[
+            "sFoodBank_id"=>$id
+        ]);
+
+        $affected = DB::update('update foodbank_inventory set ItemCount=:ItemCount where sFoodBank_id =:sFoodBank_id and Item_id=:Item_id',[
+            "ItemCount"=>$request->ItemCount,
+            "sFoodBank_id"=> $id,
+            "Item_id"=> $foodbankInventory[0]->Item_id
+        ]);
+
+        return "update affected ".$affected. " rows";
     }
 
     /**

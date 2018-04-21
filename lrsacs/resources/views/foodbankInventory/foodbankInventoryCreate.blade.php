@@ -6,7 +6,7 @@
     <div>
         <h1>Create a new FoodBank Inventory</h1>
          <div class="alert alert-danger" role="alert">
-            Ensure you choose the right foodbank, it can't be edited once created!
+            Ensure you choose the right foodbank and Item, it can't be edited once created!
           </div> 
 	    <form method="post" action="/foodbankinventory">
 	    <input type="hidden" name="_token" value="{{ csrf_token() }}">
