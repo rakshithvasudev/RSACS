@@ -59,4 +59,6 @@ Route::resource('family','FamilyController');
 Route::resource('roomwaitlist','RoomWaitListController');
 
 
+Route::resource('client','ClientController');
+
 
