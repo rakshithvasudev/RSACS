@@ -52,3 +52,7 @@ Route::resource('foodbankinventory','FoodBankInventoryController');
 
 Route::resource('soupkitchen','SoupKitchenController');
 
+
+Route::resource('family','FamilyController');
+
+
