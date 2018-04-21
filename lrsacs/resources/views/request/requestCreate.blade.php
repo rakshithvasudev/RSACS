@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('title', 'New Request')
+@section('title', 'New RoomWaitList')
 
 @section('content')
  <main>
     <div>
-        <h1>Create a new Request</h1>
+        <h1>Create a new RoomWaitList</h1>
 	    <form method="post" action="/request">
 	    <input type="hidden" name="_token" value="{{ csrf_token() }}">
        <div class="form-group">   

@@ -56,3 +56,7 @@ Route::resource('soupkitchen','SoupKitchenController');
 Route::resource('family','FamilyController');
 
 
+Route::resource('roomwaitlist','RoomWaitListController');
+
+
+
