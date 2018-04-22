@@ -62,3 +62,7 @@ Route::resource('roomwaitlist','RoomWaitListController');
 Route::resource('client','ClientController');
 
 
+Route::resource('checkin','CheckInController');
+
+
+
