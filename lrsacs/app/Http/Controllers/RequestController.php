@@ -97,7 +97,7 @@ class RequestController extends Controller
             "user_id"=>$itemRequest[0]->destination_user_id     
         ]);
         
-        $items = DB::select('select * from item where Item_id=:Item_id',[
+        $items = DB::select('select * from item order by Item_id=:Item_id desc, name asc',[
             "Item_id"=>$itemRequest[0]->Item_id
         ]);
 

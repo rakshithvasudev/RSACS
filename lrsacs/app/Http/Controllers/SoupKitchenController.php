@@ -34,11 +34,12 @@ class SoupKitchenController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return string
      */
     public function store(Request $request)
     {
-       DB::insert('insert into soupkitchen (sSoupKitchen_id, Description, totalSeatAvailable) values(:sSoupKitchen_id, :Description, :totalSeatAvailable)',[
+       DB::insert('insert into soupkitchen (sSoupKitchen_id, Description, totalSeatAvailable) 
+        values(:sSoupKitchen_id, :Description, :totalSeatAvailable)',[
         "sSoupKitchen_id"=>$request->service_id,
         "Description"=>$request->Description,
         "totalSeatAvailable"=>$request->totalSeatAvailable
@@ -46,7 +47,6 @@ class SoupKitchenController extends Controller
 
         return "inserted record(s).";
 
-        return $request->all();
     }
 
     /**
@@ -84,11 +84,12 @@ class SoupKitchenController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return string
      */
     public function update(Request $request, $id)
     {
-        $affected = DB::update('update soupkitchen set Description=:Description, totalSeatAvailable=:totalSeatAvailable where sSoupKitchen_id=:sSoupKitchen_id',[
+        $affected = DB::update('update soupkitchen set Description=:Description, 
+            totalSeatAvailable=:totalSeatAvailable where sSoupKitchen_id=:sSoupKitchen_id',[
             "Description"=>$request->Description,
             "totalSeatAvailable"=>$request->totalSeatAvailable,
             "sSoupKitchen_id"=>$id

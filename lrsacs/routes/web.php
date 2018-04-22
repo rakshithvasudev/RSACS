@@ -19,7 +19,6 @@ Route::get('/', function () {
 Route::resource('site', 'SiteController');
 
 
-
 Route::resource('service','ServiceController');
 
 
