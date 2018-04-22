@@ -40,27 +40,29 @@ class ShelterController extends Controller
      */
     public function store(Request $request)
     {
-
+        // default values need to be assigned 
         if(!is_null($request->hoursOfOperation)){
-        DB::insert('insert into shelter (sShelter_id,hoursOfOperation,bunkType,bunkAvailableCount,familyRoomAvailableCount,description) 
-        values (:sShelter_id,:hoursOfOperation,:bunkType,:bunkAvailableCount,:familyRoomAvailableCount,:description)', [
+        DB::insert('insert into shelter (sShelter_id,hoursOfOperation,bunkType,bunkAvailableCount,familyRoomAvailableCount,description,conditionsForUse) 
+        values (:sShelter_id,:hoursOfOperation,:bunkType,:bunkAvailableCount,:familyRoomAvailableCount,:description,:conditionsForUse)', [
             'sShelter_id'=>$request->service_id,
             'hoursOfOperation'=>$request->hoursOfOperation,
             'bunkType'=>$request->bunkType,
             'bunkAvailableCount'=>$request->bunkAvailableCount,
             'familyRoomAvailableCount'=>$request->familyRoomAvailableCount,
-            'description'=>$request->description
+            'description'=>$request->description,
+            "conditionsForUse"=>$request->conditionsForUse
         ]);
     }
     
     else{
-       DB::insert('insert into shelter (sShelter_id,bunkType,bunkAvailableCount,familyRoomAvailableCount,description) 
-        values (:sShelter_id,:bunkType,:bunkAvailableCount,:familyRoomAvailableCount,:description)', [
+       DB::insert('insert into shelter (sShelter_id,bunkType,bunkAvailableCount,familyRoomAvailableCount,description,conditionsForUse) 
+        values (:sShelter_id,:bunkType,:bunkAvailableCount,:familyRoomAvailableCount,:description,:conditionsForUse)', [
             'sShelter_id'=>$request->service_id,
             'bunkType'=>$request->bunkType,
             'bunkAvailableCount'=>$request->bunkAvailableCount,
             'familyRoomAvailableCount'=>$request->familyRoomAvailableCount,
-            'description'=>$request->description
+            'description'=>$request->description,
+            "conditionsForUse"=>$request->conditionsForUse
         ]);
 
     }
@@ -113,13 +115,14 @@ class ShelterController extends Controller
         $affected = DB::update('update shelter set hoursOfOperation=:hoursOfOperation,
             bunkType=:bunkType,bunkAvailableCount=:bunkAvailableCount,
             familyRoomAvailableCount=:familyRoomAvailableCount,
-            description=:description where sShelter_id=:sShelter_id',[
+            description=:description,conditionsForUse=:conditionsForUse where sShelter_id=:sShelter_id',[
             'sShelter_id'=>$id,
             'hoursOfOperation'=>$request->hoursOfOperation,
             'bunkType'=>$request->bunkType,
             'bunkAvailableCount'=>$request->bunkAvailableCount,
             'familyRoomAvailableCount'=>$request->familyRoomAvailableCount,
-            'description'=>$request->description
+            'description'=>$request->description,
+            'conditionsForUse'=>$request->conditionsForUse
         ]);
 
         return "affected ".$affected. " row(s).";

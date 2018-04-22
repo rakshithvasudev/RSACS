@@ -15,7 +15,7 @@
               <input type="text" class="form-control"  placeholder="default: 7PM to 7AM"  name="hoursOfOperation"><br>
               
               <label for="bunkType">Bunk Type:</label>
-              <input type="text" class="form-control"  placeholder="2 letters - MM" name="bunkType"><br>
+              <input type="text" class="form-control"  placeholder="2 letters - MM-Male, FF-Female, MF -Mixed" name="bunkType"><br>
 
               <label for="bunkAvailableCount">Bunk Available Count:</label>
               <input type="number" class="form-control"  placeholder="ex: 20" name="bunkAvailableCount"><br>
@@ -32,6 +32,9 @@
 
               <label for="description">Bunk Description:</label>
               <textarea class="form-control"  placeholder="Describe your bunk here" name="description" rows=5></textarea> <br>
+
+              <label for="description">Conditions for Use:</label>
+              <textarea class="form-control"  placeholder="Describe conditions for use" name="conditionsForUse" rows=5></textarea> <br>
 
               <button type="submit" class="btn btn-primary">Submit</button>
           </div>                                                            

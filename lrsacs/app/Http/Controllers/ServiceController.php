@@ -26,7 +26,8 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        return view('service.serviceCreate');
+        $sites = DB::select('select * from site');
+        return view('service.serviceCreate')->with('sites',$sites);
     }
 
     /**

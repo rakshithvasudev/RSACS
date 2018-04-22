@@ -83,11 +83,16 @@
                 </div>
 
                 <div class="links">
-                    <a href="https://RSACS.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://RSACS-news.com">News</a>
-                    <a href="https://forge.RSACS.com">Forge</a>
-                    <a href="https://github.com/RSACS/RSACS">GitHub</a>
+                    <a href="/user">User</a>
+                    <a href="/site">Site</a>
+                    <a href="/service">Service</a>
+                    <a href="/shelter">Shelter</a>
+                    <a href="/request">Request</a>
+                    <a href="/client">Client</a>
+                    <a href="/family">Family</a>
+                    <a href="/soupkitchen">Soupkitchen</a>   
+                    <a href="/foodPantry">FoodPantry</a>                    
+                
                 </div>
             </div>
         </div>

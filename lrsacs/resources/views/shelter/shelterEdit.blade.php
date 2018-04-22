@@ -31,6 +31,9 @@
               <label for="description">Bunk Description:</label>
               <textarea class="form-control"  name="description" rows=5 >{{$shelter[0]->description}}</textarea> <br>
 
+              <label for="description">Conditions for Use:</label>
+              <textarea class="form-control"  placeholder="Describe conditions for use" name="conditionsForUse" rows=5>{{$shelter[0]->conditionsForUse}}</textarea> <br>
+
               <button type="submit" class="btn btn-primary">Submit</button>
           </div>                                                            
         </form>

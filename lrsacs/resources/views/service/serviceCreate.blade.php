@@ -10,9 +10,13 @@
           <div class="form-group">   
              <label for="sName">Service Name</label>
               <input type="text" class="form-control"  placeholder="Service Name"  name="sName"><br>
-              
-              <label for="Site ID"> Site ID:</label>
-              <input type="text" class="form-control"  placeholder="Site ID" name="site_id"><br>
+
+              <label for="site">Site: </label>
+               <select class="form-control" name="site_id">
+                @foreach ($sites as $site)
+                  <option value="{{$site->site_id}}">{{$site->shortName}}</option> 
+                @endforeach
+              </select><br> 
 
               <button type="submit" class="btn btn-primary">Submit</button>
           </div>                                                            
