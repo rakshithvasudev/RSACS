@@ -98,9 +98,14 @@ class ServiceController extends Controller
      */
     public function destroy($id)
     {
-        // If all the services are going to be deleted don't allow the last one to be deleted.
-        
+        // If all the services are going to be deleted, don't allow the last one to be deleted.
+        // strategy:  If a given site_id has less than 2 services, then don't delete any service associated 
+        // with that site.
 
-        
+       $counts_sites =  DB::select('SELECT COUNT(*) as "Services", site_id FROM service GROUP BY(site_id) HAVING(services<2)');     
+
+       if(counts_sites[0]->)
+
+
     }
 }
