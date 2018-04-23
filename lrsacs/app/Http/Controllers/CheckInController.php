@@ -115,7 +115,7 @@ class CheckInController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //
+    {                                                       
+        DB::table('checkin')->where('CheckIn_id', '=', $id)->delete();
     }
 }

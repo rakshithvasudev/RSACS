@@ -98,6 +98,9 @@ class ServiceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // If all the services are going to be deleted don't allow the last one to be deleted.
+        
+
+        
     }
 }
