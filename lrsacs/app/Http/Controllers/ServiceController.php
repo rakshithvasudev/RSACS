@@ -103,16 +103,9 @@ class ServiceController extends Controller
         // with that site.
 
        $counts_sites =  DB::select('SELECT COUNT(*) as "Services", site_id FROM service GROUP BY(site_id) HAVING(services<2)');     
-       
-       foreach ($counts as $counts_sites) {
-         $securedSite_ids.
-       }
-       
+
+       if(counts_sites[0]->)
 
 
-       if(counts_sites[0]->site_id){
-
-
-       }
     }
 }
