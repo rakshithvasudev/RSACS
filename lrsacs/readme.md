@@ -1,3 +1,8 @@
+# Riverside Sharing Alliance Co-ordination system (RSACS).
+RSACS allows various providers of shelter, clothing and housing to coordinate their activities, reserve resources, report availability of bunks/rooms/food and request items from food banks. This database system allows users who work at soup kitchens, food pantries, food banks and shelters to more effectively provide service to clients, see available donations stored at food banks and make requests for them. In addition, it provides real-time reports on the total capacity of the Atlanta Sharing Alliance which can be used for planning and fund-raising purposes. It also allows unauthenticated clients with access to a web capable device to pull up real-time reports on available beds or meals. 
+
+
+# Built on top of : 
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
